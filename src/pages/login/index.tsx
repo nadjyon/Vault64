@@ -11,10 +11,13 @@ import {
 } from 'react-native';
 
 import { style } from "./styles";
-import Logo from '../../assets/logo.png'
+import Logo from '../../assets/vault.png'
 import {MaterialIcons} from '@expo/vector-icons';
 import { themes } from "../../global/themes";
+import{useNavigation,NavigationProp} from "@react-navigation/native";
+
 export default function Login (){
+    const navegation = useNavigation<NavigationProp<any>>();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading,SetLoading] = useState(false)
@@ -30,6 +33,8 @@ export default function Login (){
             setTimeout(()=>{ 
                 if (email=='email.teste@gmail.com' && password=='123456'){
                 
+                navegation.navigate("BottomRoutes")
+                
                 Alert.alert("Logado com sucesso!")
                 }else{
                     Alert.alert("Usuario não encontrado!")
@@ -41,9 +46,9 @@ export default function Login (){
 
         } catch (error) {
             console.log(error)
-        }//finally{
-            //SetLoading(false)
-        
+        }finally{
+            SetLoading(false)
+        }
     }
 
 
